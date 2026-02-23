@@ -3,124 +3,403 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finl.ai Portfolio</title>
+  <title>Finl.ai — Fin's AI Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:        #F5F0E8;
+      --cream-light:  #FFFDF7;
+      --forest:       #2D3B2D;
+      --sage:         #7FAF7F;
+      --sage-light:   #D4E8D4;
+      --sage-border:  #C4D4C4;
+      --water:        #6BA3BE;
+      --water-light:  #C2DCE8;
+      --sand:         #D4C4A8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--forest);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .pixel-font {
+      font-family: 'Press Start 2P', monospace;
+      line-height: 1.8;
+    }
+
+    /* Pixel borders */
+    .pixel-border {
+      border: 3px solid var(--forest);
+      box-shadow: 4px 4px 0px var(--forest);
+    }
+
+    .pixel-border-soft {
+      border: 2px dashed var(--sage-border);
+    }
+
+    .pixel-border-water {
+      border: 3px solid var(--water);
+      box-shadow: 4px 4px 0px var(--water);
+    }
+
+    /* Buttons */
+    .pixel-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      padding: 12px 20px;
+      border: 2px solid var(--forest);
+      box-shadow: 3px 3px 0px var(--forest);
+      text-decoration: none;
+      transition: box-shadow 0.08s ease, transform 0.08s ease;
+      cursor: pointer;
+    }
+
+    .pixel-btn:hover {
+      box-shadow: 1px 1px 0px var(--forest);
+      transform: translate(2px, 2px);
+    }
+
+    .pixel-btn:active {
+      box-shadow: none;
+      transform: translate(3px, 3px);
+    }
+
+    /* Nav */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: var(--cream-light);
+      border-bottom: 3px solid var(--forest);
+      padding: 16px 24px;
+    }
+
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--forest);
+    }
+
+    .nav-logo span { color: var(--water); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      text-decoration: none;
+      color: var(--forest);
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    /* Pixel divider */
+    .pixel-divider {
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--forest) 0px,
+        var(--forest) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      margin: 0;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 32px;
+    }
+
+    .sprite-frame {
+      background: var(--cream-light);
+      padding: 8px;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .sprite-frame img {
+      display: block;
+      width: 96px;
+      height: 104px;
+      margin-top: -8px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .hero-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(16px, 3vw, 22px);
+      line-height: 1.8;
+      color: var(--forest);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      max-width: 520px;
+      opacity: 0.75;
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Section layout */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      opacity: 0.6;
+      margin-bottom: 40px;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--cream-light);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--forest) !important;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      padding: 3px 7px;
+      border: 1.5px solid var(--water);
+      background-color: var(--water-light);
+      color: var(--forest);
+      white-space: nowrap;
+    }
+
+    .tag-sage {
+      border-color: var(--sage);
+      background-color: var(--sage-light);
+    }
+
+    .tag-sand {
+      border-color: var(--sand);
+      background-color: #EDE4D4;
+    }
+
+    .card-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      line-height: 1.9;
+      color: var(--forest);
+    }
+
+    .card-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      opacity: 0.7;
+    }
+
+    .card-link {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      text-decoration: none;
+      color: var(--water);
+      margin-top: auto;
+      display: inline-block;
+    }
+
+    .card-link:hover { opacity: 0.7; }
+
+    /* Ghost card */
+    .card-ghost {
+      opacity: 0.45;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 3px solid var(--forest);
+      padding: 40px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    footer .pixel-font { font-size: 9px; opacity: 0.5; }
+    footer p { font-size: 12px; opacity: 0.35; }
+
+    /* Responsive nav */
+    @media (max-width: 520px) {
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 7px; }
+      .nav-logo { font-size: 11px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 relative">
+<body>
 
-  <!-- Hero Section -->
-  <header class="relative flex flex-col justify-center items-center bg-white space-y-6 pt-32 pb-20">
-    <!-- Logo -->
-    <div class="z-0">
-      <svg width="160" height="48" viewBox="0 0 160 48" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="36" font-family="Helvetica,Arial,sans-serif" font-size="36" font-weight="bold" fill="#1F2937">
-          Finl <tspan fill="#4F46E5">.ai</tspan>
-        </text>
-      </svg>
+  <!-- Nav -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">Finl<span>.ai</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#journey">The Journey</a></li>
+        <li><a href="#side-quests">Side Quests</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- Greeting -->
-    <h1 class="text-5xl font-bold leading-none">Hi, I'm Finlay</h1>
+  <!-- Hero -->
+  <header id="home">
+    <div class="hero">
+      <div class="sprite-frame pixel-border">
+        <img src="spritefin.gif" alt="Fin — pixel sprite" />
+      </div>
 
-    <!-- Clipped GIF -->
-    <div class="w-24 h-24 overflow-hidden">
-      <img src="spritefin.gif" alt="Animated Finlay Sprite" class="block -mt-1" />
-    </div>
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+        <h1 class="hero-title">Hey, I'm Fin.</h1>
+        <p class="hero-sub">
+          I got bored of waiting for a better future, so I'm building one.
+          This is my journal — learning AI, vibe coding apps, and failing forward, one side quest at a time.
+        </p>
+      </div>
 
-    <p class="text-xl text-gray-600">Welcome to my portfolio — Finl.ai</p>
-    <a href="#projects" class="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition">
-      View Projects
-    </a>
-
-    <!-- Scroll-Down Arrow -->
-    <div class="absolute bottom-10 animate-bounce">
-      <svg class="h-6 w-6 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-      </svg>
+      <div class="hero-btns">
+        <a href="#journey" class="pixel-btn" style="background: var(--water); color: white;">
+          The Journey ↓
+        </a>
+        <a href="#side-quests" class="pixel-btn" style="background: var(--cream-light); color: var(--forest);">
+          Side Quests ↓
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- Projects Carousel -->
-  <section id="projects" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Projects</h2>
-      <div class="relative">
-        <div class="overflow-hidden">
-          <div class="flex transition-transform duration-500" id="projectSlides">
-            <!-- Slide 1 -->
-            <div class="min-w-full px-4">
-              <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                <img src="https://via.placeholder.com/300x200" alt="App One" class="mx-auto mb-4 rounded" />
-                <h3 class="text-2xl font-semibold mb-2">App One</h3>
-                <p class="text-gray-600">A short description of App One.</p>
-              </div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="min-w-full px-4">
-              <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                <img src="https://via.placeholder.com/300x200" alt="App Two" class="mx-auto mb-4 rounded" />
-                <h3 class="text-2xl font-semibold mb-2">App Two</h3>
-                <p class="text-gray-600">A short description of App Two.</p>
-              </div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="min-w-full px-4">
-              <div class="bg-white rounded-xl shadow-md p-6 text-center">
-                <img src="https://via.placeholder.com/300x200" alt="App Three" class="mx-auto mb-4 rounded" />
-                <h3 class="text-2xl font-semibold mb-2">App Three</h3>
-                <p class="text-gray-600">A short description of App Three.</p>
-              </div>
-            </div>
+  <div class="pixel-divider"></div>
+
+  <!-- The Journey -->
+  <section id="journey">
+    <div class="section">
+      <p class="section-label" style="color: var(--water);">// The Journey</p>
+      <p class="section-desc">Notes, learnings, and honest reflections from the road.</p>
+
+      <div class="card-grid">
+
+        <!-- Entry 001 — your first real post, edit this -->
+        <article class="card pixel-border">
+          <div class="card-tags">
+            <span class="tag">entry #001</span>
+            <span class="tag tag-sage">start here</span>
           </div>
+          <h3 class="card-title">Day One. Where It All Begins.</h3>
+          <p class="card-body">
+            Why I decided to stop watching from the sidelines and start building. The honest version.
+          </p>
+          <a href="#" class="card-link">read → </a>
+        </article>
+
+        <!-- Placeholder — remove when you publish entry #002 -->
+        <article class="card pixel-border-soft card-ghost">
+          <div class="card-tags">
+            <span class="tag tag-sand">coming soon</span>
+          </div>
+          <h3 class="card-title">Entry #002</h3>
+          <p class="card-body">The next chapter is being written...</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider"></div>
+
+  <!-- Side Quests -->
+  <section id="side-quests">
+    <div class="section">
+      <p class="section-label" style="color: var(--sage);">// Side Quests</p>
+      <p class="section-desc">Apps and experiments I've vibe-coded into existence.</p>
+
+      <div class="card-grid">
+
+        <!-- Placeholder — replace with your first real project -->
+        <div class="card pixel-border-soft card-ghost">
+          <div class="card-tags">
+            <span class="tag tag-sage">in progress</span>
+          </div>
+          <h3 class="card-title">Quest #001</h3>
+          <p class="card-body">First build incoming. Figuring out what to make.</p>
         </div>
-        <!-- Carousel Controls -->
-        <button type="button" id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100">‹</button>
-        <button type="button" id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100">›</button>
+
       </div>
     </div>
   </section>
 
-  <!-- Blog Section -->
-  <section id="blog" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Latest Blog Posts</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Blog Post 1 -->
-        <article class="bg-gray-50 rounded-lg shadow p-6">
-          <h3 class="text-2xl font-semibold mb-2">Blog Post Title 1</h3>
-          <p class="text-gray-600 mb-4">A short excerpt from the blog post to entice readers.</p>
-          <a href="#" class="text-indigo-600 hover:underline">Read more →</a>
-        </article>
-        <!-- Blog Post 2 -->
-        <article class="bg-gray-50 rounded-lg shadow p-6">
-          <h3 class="text-2xl font-semibold mb-2">Blog Post Title 2</h3>
-          <p class="text-gray-600 mb-4">A short excerpt from the blog post to entice readers.</p>
-          <a href="#" class="text-indigo-600 hover:underline">Read more →</a>
-        </article>
-        <!-- Blog Post 3 -->
-        <article class="bg-gray-50 rounded-lg shadow p-6">
-          <h3 class="text-2xl font-semibold mb-2">Blog Post Title 3</h3>
-          <p class="text-gray-600 mb-4">A short excerpt from the blog post to entice readers.</p>
-          <a href="#" class="text-indigo-600 hover:underline">Read more →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Carousel Script -->
-  <script>
-    const slides = document.getElementById('projectSlides');
-    const totalSlides = slides.children.length;
-    let index = 0;
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      index = (index + 1) % totalSlides;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    });
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      index = (index - 1 + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    });
-  </script>
+  <!-- Footer -->
+  <footer>
+    <p class="pixel-font">finl.ai — built by fin. © 2026</p>
+    <p>documenting the journey, one step at a time.</p>
+  </footer>
 
 </body>
 </html>
