@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Becca & Finlay — Our Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:        #F5F0E8;
+      --cream-light:  #FFFDF7;
+      --forest:       #2D3B2D;
+      --sage:         #7FAF7F;
+      --sage-light:   #D4E8D4;
+      --water:        #6BA3BE;
+      --water-light:  #C2DCE8;
+      --rose:         #D4848A;
+      --rose-light:   #FAE8EA;
+      --sand:         #D4C4A8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--forest);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .pixel-font {
+      font-family: 'Press Start 2P', monospace;
+      line-height: 1.8;
+    }
+
+    /* Nav */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: var(--cream-light);
+      border-bottom: 3px solid var(--forest);
+      padding: 16px 24px;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-back {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      text-decoration: none;
+      color: var(--forest);
+      opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+
+    .nav-back:hover { opacity: 1; }
+
+    .nav-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      color: var(--forest);
+    }
+
+    .nav-title span { color: var(--rose); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 72px 24px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-heart {
+      font-size: 28px;
+      animation: heartbeat 1.8s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.2); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.15); }
+      56%       { transform: scale(1); }
+    }
+
+    .hero h1 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(14px, 3vw, 20px);
+      line-height: 1.8;
+      color: var(--forest);
+    }
+
+    .hero h1 span { color: var(--rose); }
+
+    .hero p {
+      font-size: 15px;
+      opacity: 0.6;
+      max-width: 400px;
+    }
+
+    /* Pixel divider */
+    .pixel-divider {
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--forest) 0px, var(--forest) 8px,
+        transparent 8px, transparent 16px
+      );
+    }
+
+    /* Timeline */
+    .timeline-section {
+      padding: 80px 24px 100px;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* The swirly line — repeating SVG S-curve */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 30px;
+      transform: translateX(-50%);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='60' viewBox='0 0 30 60'%3E%3Cpath d='M15 0 C 28 10, 28 20, 15 30 C 2 40, 2 50, 15 60' stroke='%236BA3BE' fill='none' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-size: 30px 60px;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    /* Timeline entries */
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-entry.left .entry-card  { grid-column: 1; grid-row: 1; justify-self: end; }
+    .timeline-entry.left .timeline-dot { grid-column: 2; grid-row: 1; justify-self: center; }
+    .timeline-entry.left .entry-spacer { grid-column: 3; grid-row: 1; }
+
+    .timeline-entry.right .entry-spacer { grid-column: 1; grid-row: 1; }
+    .timeline-entry.right .timeline-dot { grid-column: 2; grid-row: 1; justify-self: center; }
+    .timeline-entry.right .entry-card  { grid-column: 3; grid-row: 1; justify-self: start; }
+
+    /* Card */
+    .entry-card {
+      background: var(--cream-light);
+      padding: 24px;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .entry-card:hover {
+      transform: translate(-2px, -2px);
+    }
+
+    .entry-card.solid {
+      border: 3px solid var(--forest);
+      box-shadow: 4px 4px 0px var(--forest);
+    }
+
+    .entry-card.solid:hover {
+      box-shadow: 6px 6px 0px var(--forest);
+    }
+
+    .entry-card.ghost {
+      border: 2px dashed var(--sand);
+      opacity: 0.5;
+    }
+
+    .entry-date {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--rose);
+      display: block;
+    }
+
+    .entry-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      line-height: 1.9;
+      color: var(--forest);
+    }
+
+    .entry-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      opacity: 0.75;
+    }
+
+    .entry-photo {
+      width: 100%;
+      display: block;
+      border: 3px solid var(--forest);
+      margin-top: 4px;
+    }
+
+    /* Dot on the line */
+    .timeline-dot {
+      width: 18px;
+      height: 18px;
+      background: var(--rose);
+      border: 3px solid var(--forest);
+      border-radius: 0;
+      flex-shrink: 0;
+      z-index: 2;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .left.reveal  { transform: translateX(-40px); }
+    .right.reveal { transform: translateX(40px); }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Mobile: stack everything */
+    @media (max-width: 640px) {
+      .timeline-line { left: 20px; }
+
+      .timeline-entry {
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto;
+        margin-bottom: 48px;
+      }
+
+      .timeline-entry.left .timeline-dot,
+      .timeline-entry.right .timeline-dot {
+        grid-column: 1; grid-row: 1; justify-self: center; align-self: start; margin-top: 8px;
+      }
+
+      .timeline-entry.left .entry-card,
+      .timeline-entry.right .entry-card {
+        grid-column: 2; grid-row: 1; justify-self: start; max-width: 100%;
+      }
+
+      .timeline-entry.left .entry-spacer,
+      .timeline-entry.right .entry-spacer { display: none; }
+
+      .left.reveal, .right.reveal { transform: translateX(20px); }
+    }
+
+    /* Footer */
+    footer {
+      border-top: 3px solid var(--forest);
+      padding: 36px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    footer .pixel-font { font-size: 8px; opacity: 0.45; }
+    footer p { font-size: 12px; opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-back">← finl.ai</a>
+      <span class="nav-title">Becca <span>&</span> Finlay</span>
+      <span style="width: 80px;"></span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-heart">&#9825;</div>
+    <h1>Becca <span>&</span> Finlay</h1>
+    <p>our story, one chapter at a time.</p>
+  </header>
+
+  <div class="pixel-divider"></div>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <div class="timeline-container">
+
+      <!-- Swirly line -->
+      <div class="timeline-line"></div>
+
+      <!-- Entry 1: The First Date -->
+      <div class="timeline-entry left reveal">
+        <div class="entry-card solid">
+          <span class="entry-date">16 Jan 2026</span>
+          <h3 class="entry-title">The First Date</h3>
+          <p class="entry-body">Where it all began. The night that started everything.</p>
+          <img src="firstdate.jpg" alt="Becca and Finlay — first date" class="entry-photo" />
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="entry-spacer"></div>
+      </div>
+
+      <!-- Placeholder: add more entries below this line as you go -->
+      <div class="timeline-entry right reveal">
+        <div class="entry-spacer"></div>
+        <div class="timeline-dot" style="background: var(--sand); border-color: var(--sand); opacity: 0.4;"></div>
+        <div class="entry-card ghost">
+          <span class="entry-date">coming soon</span>
+          <h3 class="entry-title">Chapter 2</h3>
+          <p class="entry-body">The next chapter is still being written...</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="pixel-font">finl.ai — a side quest worth taking.</p>
+    <p>built with care, for keeps.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
