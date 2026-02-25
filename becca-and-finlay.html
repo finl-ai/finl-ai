@@ -30,63 +30,40 @@
       line-height: 1.6;
     }
 
-    .pixel-font {
-      font-family: 'Press Start 2P', monospace;
-      line-height: 1.8;
-    }
+    .pixel-font { font-family: 'Press Start 2P', monospace; line-height: 1.8; }
 
     /* Nav */
     .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       background-color: var(--cream-light);
       border-bottom: 3px solid var(--forest);
       padding: 16px 24px;
     }
-
     .nav-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
     .nav-back {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      text-decoration: none;
-      color: var(--forest);
-      opacity: 0.6;
-      transition: opacity 0.15s;
+      font-family: 'Press Start 2P', monospace; font-size: 8px;
+      text-decoration: none; color: var(--forest); opacity: 0.6; transition: opacity 0.15s;
     }
-
     .nav-back:hover { opacity: 1; }
-
-    .nav-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      color: var(--forest);
-    }
-
+    .nav-title { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--forest); }
     .nav-title span { color: var(--rose); }
+    .nav-wrapped {
+      font-family: 'Press Start 2P', monospace; font-size: 7px;
+      text-decoration: none; color: var(--rose); opacity: 0.8;
+      border: 2px solid var(--rose); padding: 5px 8px;
+      box-shadow: 2px 2px 0 var(--rose); transition: all 0.1s ease;
+    }
+    .nav-wrapped:hover { box-shadow: 0px 0px 0 var(--rose); transform: translate(2px, 2px); }
 
     /* Hero */
     .hero {
-      text-align: center;
-      padding: 72px 24px 56px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      text-align: center; padding: 72px 24px 56px;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
     }
-
-    .hero-heart {
-      font-size: 28px;
-      animation: heartbeat 1.8s ease-in-out infinite;
-    }
-
+    .hero-heart { font-size: 28px; animation: heartbeat 1.8s ease-in-out infinite; }
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       14%       { transform: scale(1.2); }
@@ -94,56 +71,32 @@
       42%       { transform: scale(1.15); }
       56%       { transform: scale(1); }
     }
-
     .hero h1 {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(14px, 3vw, 20px);
-      line-height: 1.8;
-      color: var(--forest);
+      font-size: clamp(14px, 3vw, 20px); line-height: 1.8; color: var(--forest);
     }
-
     .hero h1 span { color: var(--rose); }
-
-    .hero p {
-      font-size: 15px;
-      opacity: 0.6;
-      max-width: 400px;
-    }
+    .hero p { font-size: 15px; opacity: 0.6; max-width: 400px; }
 
     /* Pixel divider */
     .pixel-divider {
       height: 3px;
       background: repeating-linear-gradient(
-        90deg,
-        var(--forest) 0px, var(--forest) 8px,
-        transparent 8px, transparent 16px
+        90deg, var(--forest) 0px, var(--forest) 8px, transparent 8px, transparent 16px
       );
     }
 
     /* Timeline */
-    .timeline-section {
-      padding: 80px 24px 100px;
-    }
+    .timeline-section { padding: 80px 24px 100px; }
+    .timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
 
-    .timeline-container {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* The swirly line — repeating SVG S-curve */
+    /* Swirly line */
     .timeline-line {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 30px;
-      transform: translateX(-50%);
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 30px; transform: translateX(-50%);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='60' viewBox='0 0 30 60'%3E%3Cpath d='M15 0 C 28 10, 28 20, 15 30 C 2 40, 2 50, 15 60' stroke='%236BA3BE' fill='none' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: repeat-y;
-      background-size: 30px 60px;
-      z-index: 0;
-      opacity: 0.7;
+      background-repeat: repeat-y; background-size: 30px 60px;
+      z-index: 0; opacity: 0.7;
     }
 
     /* Timeline entries */
@@ -152,151 +105,97 @@
       grid-template-columns: 1fr 60px 1fr;
       align-items: center;
       margin-bottom: 80px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
-
-    .timeline-entry.left .entry-card  { grid-column: 1; grid-row: 1; justify-self: end; }
-    .timeline-entry.left .timeline-dot { grid-column: 2; grid-row: 1; justify-self: center; }
-    .timeline-entry.left .entry-spacer { grid-column: 3; grid-row: 1; }
-
-    .timeline-entry.right .entry-spacer { grid-column: 1; grid-row: 1; }
-    .timeline-entry.right .timeline-dot { grid-column: 2; grid-row: 1; justify-self: center; }
-    .timeline-entry.right .entry-card  { grid-column: 3; grid-row: 1; justify-self: start; }
+    .timeline-entry.left  .entry-card  { grid-column: 1; justify-self: end; }
+    .timeline-entry.left  .timeline-dot { grid-column: 2; justify-self: center; }
+    .timeline-entry.left  .entry-spacer { grid-column: 3; }
+    .timeline-entry.right .entry-spacer { grid-column: 1; }
+    .timeline-entry.right .timeline-dot { grid-column: 2; justify-self: center; }
+    .timeline-entry.right .entry-card  { grid-column: 3; justify-self: start; }
 
     /* Card */
     .entry-card {
-      background: var(--cream-light);
-      padding: 24px;
-      max-width: 360px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      background: var(--cream-light); padding: 24px; max-width: 360px;
+      display: flex; flex-direction: column; gap: 12px;
       transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
-
-    .entry-card:hover {
-      transform: translate(-2px, -2px);
-    }
-
     .entry-card.solid {
-      border: 3px solid var(--forest);
-      box-shadow: 4px 4px 0px var(--forest);
+      border: 3px solid var(--forest); box-shadow: 4px 4px 0px var(--forest);
     }
-
-    .entry-card.solid:hover {
-      box-shadow: 6px 6px 0px var(--forest);
-    }
-
-    .entry-card.ghost {
-      border: 2px dashed var(--sand);
-      opacity: 0.5;
-    }
+    .entry-card.solid:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--forest); }
+    .entry-card.ghost { border: 2px dashed var(--sand); opacity: 0.5; }
 
     .entry-date {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      color: var(--rose);
-      display: block;
+      font-family: 'Press Start 2P', monospace; font-size: 7px;
+      color: var(--rose); display: block;
     }
-
     .entry-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
-      line-height: 1.9;
-      color: var(--forest);
+      font-family: 'Press Start 2P', monospace; font-size: 9px;
+      line-height: 1.9; color: var(--forest);
     }
+    .entry-body { font-size: 13.5px; line-height: 1.75; opacity: 0.75; }
 
-    .entry-body {
-      font-size: 13.5px;
-      line-height: 1.75;
-      opacity: 0.75;
+    .entry-quote {
+      font-size: 12px; line-height: 1.7; opacity: 0.65;
+      border-left: 3px solid var(--rose); padding-left: 10px;
+      font-style: italic; margin-top: 4px;
     }
 
     .entry-photo {
-      width: 100%;
-      display: block;
-      border: 3px solid var(--forest);
-      margin-top: 4px;
+      width: 100%; display: block;
+      border: 3px solid var(--forest); margin-top: 4px;
+      object-fit: cover; max-height: 240px;
     }
 
-    /* Dot on the line */
+    /* Dot */
     .timeline-dot {
-      width: 18px;
-      height: 18px;
-      background: var(--rose);
-      border: 3px solid var(--forest);
-      border-radius: 0;
-      flex-shrink: 0;
-      z-index: 2;
+      width: 18px; height: 18px;
+      background: var(--rose); border: 3px solid var(--forest);
+      flex-shrink: 0; z-index: 2;
     }
 
     /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
+    .reveal { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
     .left.reveal  { transform: translateX(-40px); }
     .right.reveal { transform: translateX(40px); }
+    .reveal.visible { opacity: 1; transform: translateX(0); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* Mobile: stack everything */
+    /* Mobile */
     @media (max-width: 640px) {
       .timeline-line { left: 20px; }
-
       .timeline-entry {
         grid-template-columns: 40px 1fr;
-        grid-template-rows: auto;
-        margin-bottom: 48px;
+        grid-template-rows: auto; margin-bottom: 48px;
       }
-
-      .timeline-entry.left .timeline-dot,
-      .timeline-entry.right .timeline-dot {
-        grid-column: 1; grid-row: 1; justify-self: center; align-self: start; margin-top: 8px;
-      }
-
-      .timeline-entry.left .entry-card,
-      .timeline-entry.right .entry-card {
-        grid-column: 2; grid-row: 1; justify-self: start; max-width: 100%;
-      }
-
-      .timeline-entry.left .entry-spacer,
+      .timeline-entry.left  .timeline-dot,
+      .timeline-entry.right .timeline-dot { grid-column: 1; grid-row: 1; justify-self: center; align-self: start; margin-top: 8px; }
+      .timeline-entry.left  .entry-card,
+      .timeline-entry.right .entry-card   { grid-column: 2; grid-row: 1; justify-self: start; max-width: 100%; }
+      .timeline-entry.left  .entry-spacer,
       .timeline-entry.right .entry-spacer { display: none; }
-
       .left.reveal, .right.reveal { transform: translateX(20px); }
     }
 
     /* Footer */
     footer {
-      border-top: 3px solid var(--forest);
-      padding: 36px 24px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      border-top: 3px solid var(--forest); padding: 36px 24px;
+      text-align: center; display: flex; flex-direction: column; gap: 10px;
     }
-
     footer .pixel-font { font-size: 8px; opacity: 0.45; }
     footer p { font-size: 12px; opacity: 0.3; }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
   <nav class="site-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-back">← finl.ai</a>
       <span class="nav-title">Becca <span>&</span> Finlay</span>
-      <span style="width: 80px;"></span>
+      <a href="becca-and-finlay-wrapped.html" class="nav-wrapped">✦ Wrapped</a>
     </div>
   </nav>
 
-  <!-- Hero -->
   <header class="hero">
     <div class="hero-heart">&#9825;</div>
     <h1>Becca <span>&</span> Finlay</h1>
@@ -305,40 +204,145 @@
 
   <div class="pixel-divider"></div>
 
-  <!-- Timeline -->
   <section class="timeline-section">
     <div class="timeline-container">
-
-      <!-- Swirly line -->
       <div class="timeline-line"></div>
 
-      <!-- Entry 1: The First Date -->
+      <!-- 02 Jan — First Message -->
+      <div class="timeline-entry left reveal">
+        <div class="entry-card solid">
+          <span class="entry-date">02 Jan 2026</span>
+          <h3 class="entry-title">Hey x</h3>
+          <p class="entry-body">One message. Two letters. One kiss. Becca moved from Tinder to WhatsApp and sent the first word.</p>
+          <p class="entry-quote">"Hey x"</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="entry-spacer"></div>
+      </div>
+
+      <!-- 03 Jan — I'm In -->
+      <div class="timeline-entry right reveal">
+        <div class="entry-spacer"></div>
+        <div class="timeline-dot"></div>
+        <div class="entry-card solid">
+          <span class="entry-date">03 Jan 2026</span>
+          <h3 class="entry-title">I'm In.</h3>
+          <p class="entry-body">Day two. Finlay almost talked himself out of it. Then Becca said she'd put all her eggs in his basket — and he didn't stand a chance.</p>
+          <p class="entry-quote">"okay okay fine. I'm in."</p>
+        </div>
+      </div>
+
+      <!-- 10 Jan — First I Like You -->
+      <div class="timeline-entry left reveal">
+        <div class="entry-card solid">
+          <span class="entry-date">10 Jan 2026</span>
+          <h3 class="entry-title">First "I Like You"</h3>
+          <p class="entry-body">Said in capitals. Unmistakably meant. Eight days in and they were already past the point of pretending otherwise.</p>
+          <p class="entry-quote">"I LIKE YOU AND YOU MAKE ME SMILE." / "I LIKE YOU TOO."</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="entry-spacer"></div>
+      </div>
+
+      <!-- 11 Jan — Butterflies + Bucket List -->
+      <div class="timeline-entry right reveal">
+        <div class="entry-spacer"></div>
+        <div class="timeline-dot"></div>
+        <div class="entry-card solid">
+          <span class="entry-date">11 Jan 2026</span>
+          <h3 class="entry-title">Butterflies & a Bucket List</h3>
+          <p class="entry-body">Finlay said the thought of a future with Becca gave him butterflies. Then he went and made a shared bucket list — Amsterdam, Prague, Japan, South Korea — before they'd even met.</p>
+          <p class="entry-quote">"The thought of a future with you is literally giving me butterflies."</p>
+        </div>
+      </div>
+
+      <!-- 16 Jan — First Date -->
       <div class="timeline-entry left reveal">
         <div class="entry-card solid">
           <span class="entry-date">16 Jan 2026</span>
           <h3 class="entry-title">The First Date</h3>
-          <p class="entry-body">Where it all began. The night that started everything.</p>
+          <p class="entry-body">Junkyard Golf, Newcastle. Central Station at 8pm. Finlay handed Becca a Flareon Funko Pop — a gift he'd bought before they'd even met. She'd never had one before.</p>
+          <p class="entry-quote">"I had the best time tbh." / "I've had a really good time."</p>
           <img src="firstdate.jpg" alt="Becca and Finlay — first date" class="entry-photo" />
         </div>
         <div class="timeline-dot"></div>
         <div class="entry-spacer"></div>
       </div>
 
-      <!-- Placeholder: add more entries below this line as you go -->
+      <!-- 19 Jan — Lockscreen -->
       <div class="timeline-entry right reveal">
         <div class="entry-spacer"></div>
-        <div class="timeline-dot" style="background: var(--sand); border-color: var(--sand); opacity: 0.4;"></div>
+        <div class="timeline-dot"></div>
+        <div class="entry-card solid">
+          <span class="entry-date">19 Jan 2026</span>
+          <h3 class="entry-title">She's His Lockscreen</h3>
+          <p class="entry-body">Becca sent a selfie on what was supposed to be their second date night. Finlay made it his lockscreen immediately — she said she was expecting him to.</p>
+          <p class="entry-quote">"Can I!?!?" / "I was expecting you to."</p>
+        </div>
+      </div>
+
+      <!-- 29 Jan — Date 2, Malmaison -->
+      <div class="timeline-entry left reveal">
+        <div class="entry-card solid">
+          <span class="entry-date">29 Jan 2026</span>
+          <h3 class="entry-title">Date 2 — Malmaison</h3>
+          <p class="entry-body">Second date: Malmaison on the Quayside, Dominos, and bingeing Dark together. Their first overnight stay. The morning after said everything.</p>
+          <p class="entry-quote">"Miss you." / "Miss u." / "I had the best time btw." / "ME TOO."</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="entry-spacer"></div>
+      </div>
+
+      <!-- 30 Jan — The Hoodie -->
+      <div class="timeline-entry right reveal">
+        <div class="entry-spacer"></div>
+        <div class="timeline-dot"></div>
+        <div class="entry-card solid">
+          <span class="entry-date">30 Jan 2026</span>
+          <h3 class="entry-title">The Hoodie</h3>
+          <p class="entry-body">The morning after. Finlay confessed he'd worn his hoodie on purpose — because it smelled like Becca. This was the beginning of Spidey era.</p>
+          <p class="entry-quote">"I purposely wore my hoodie just cause it smells like you."</p>
+        </div>
+      </div>
+
+      <!-- 14 Feb — Valentine's York -->
+      <div class="timeline-entry left reveal">
+        <div class="entry-card solid">
+          <span class="entry-date">14 Feb 2026</span>
+          <h3 class="entry-title">Valentine's in York</h3>
+          <p class="entry-body">They met outside Central Station and got the train to York. The next morning Finlay dumped 32 photos into the chat. Both said the same thing.</p>
+          <p class="entry-quote">"THANK YOU FOR THE BEST WEEKEND."</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="entry-spacer"></div>
+      </div>
+
+      <!-- 22 Feb — Build-a-Bear Spidey -->
+      <div class="timeline-entry right reveal">
+        <div class="entry-spacer"></div>
+        <div class="timeline-dot"></div>
+        <div class="entry-card solid">
+          <span class="entry-date">22 Feb 2026</span>
+          <h3 class="entry-title">Meet Spidey</h3>
+          <p class="entry-body">Finlay's Valentine's gift: a Build-a-Bear Spider-Man. Becca got peer reviews from friends and family while Finlay was in the shower. The verdict was unanimous.</p>
+          <p class="entry-quote">"That it was cute and you done good." / "I AM GLAD I GOT SOME PEER REVIEWS."</p>
+        </div>
+      </div>
+
+      <!-- Coming Soon -->
+      <div class="timeline-entry left reveal">
         <div class="entry-card ghost">
           <span class="entry-date">coming soon</span>
-          <h3 class="entry-title">Chapter 2</h3>
-          <p class="entry-body">The next chapter is still being written...</p>
+          <h3 class="entry-title">Chapter 11...</h3>
+          <p class="entry-body">Still being written.</p>
         </div>
+        <div class="timeline-dot" style="background: var(--sand); border-color: var(--sand); opacity: 0.4;"></div>
+        <div class="entry-spacer"></div>
       </div>
 
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p class="pixel-font">finl.ai — a side quest worth taking.</p>
     <p>built with care, for keeps.</p>
@@ -347,12 +351,9 @@
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 
